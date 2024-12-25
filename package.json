@@ -1,5 +1,5 @@
 {
-  "name": "aocrunner",
+  "name": "@nekosaur/aocrunner",
   "version": "1.10.0",
   "repository": "https://github.com/caderek/aocrunner",
   "description": "Advent of Code runner",
