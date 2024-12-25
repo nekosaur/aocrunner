@@ -3,7 +3,7 @@ import kleur from "kleur"
 import { stripIndent } from "common-tags"
 import { saveConfig, readConfig } from "./io/config.js"
 import toFixed from "./utils/toFixed.js"
-import getDayData from "./utils/getDayData.js"
+import path from "path"
 
 type Tests = {
   name?: string
@@ -151,12 +151,12 @@ const run = (solutions: Solutions, customInputFile?: string) => {
     inputFile = customInputFile
     day = dayName ? Number(dayName.slice(-2)) : null
   } else {
-    const dayData = getDayData()
-    day = dayData.day
-    inputFile = dayData.inputFile
+    const filePath = process.argv[1]
+    day = Number(path.dirname(filePath).split(path.sep).at(-1)?.slice(3))
+    inputFile = path.join(path.dirname(filePath), "input.txt")
   }
 
-  if (inputFile === null) {
+  if (inputFile == null) {
     console.log(
       kleur.red(stripIndent`
         Couldn't detect the day directory!
@@ -168,7 +168,7 @@ const run = (solutions: Solutions, customInputFile?: string) => {
     return
   }
 
-  if (day === null) {
+  if (day == null || isNaN(day)) {
     console.log(
       kleur.red(stripIndent`
         Couldn't detect the day number!

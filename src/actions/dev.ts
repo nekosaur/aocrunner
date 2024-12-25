@@ -157,9 +157,9 @@ const dev = (dayRaw: string | undefined) => {
   const fromDir = path.join("src", "template")
   const toDir = path.join("src", dayDir)
   const indexFile = path.join(
-    config.language === "ts" ? "dist" : "src",
+    "src",
     dayDir,
-    "index.js",
+    config.language === "ts" ? "index.ts" : "index.js",
   )
   const inputPath = path.join(toDir, "input.txt")
   const dayReadmePath = path.join(toDir, "README.md")
@@ -181,13 +181,13 @@ const dev = (dayRaw: string | undefined) => {
 
   getInput(config.year, dayNum, inputPath)
 
-  const files = getAllFiles("src")
+  // const files = getAllFiles("src")
 
-  if (config.language === "ts") {
-    buildSource(files)
-  }
+  // if (config.language === "ts") {
+  //   buildSource(files)
+  // }
 
-  runSolution(dayNum, indexFile)
+  runSolution(dayNum, indexFile, config.language)
 
   const reload = (file: string) => {
     if (![".js", ".ts", ".mjs"].includes(path.parse(file).ext)) {
@@ -196,11 +196,11 @@ const dev = (dayRaw: string | undefined) => {
 
     console.clear()
 
-    if (config.language === "ts") {
-      buildSource(file)
-    }
+    // if (config.language === "ts") {
+    //   buildSource(file)
+    // }
 
-    runSolution(dayNum, indexFile)
+    runSolution(dayNum, indexFile, config.language)
 
     showInfo()
 
