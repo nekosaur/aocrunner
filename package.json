@@ -1,10 +1,15 @@
 {
   "name": "@nekosaur/aocrunner",
   "version": "2.0.0",
-  "repository": "https://github.com/caderek/aocrunner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caderek/aocrunner.git"
+  },
   "description": "Advent of Code runner",
   "main": "lib/index.js",
-  "bin": "lib/cli.js",
+  "bin": {
+    "aocrunner": "lib/cli.js"
+  },
   "type": "module",
   "scripts": {
     "dev": "node scripts/build.js --watch",
